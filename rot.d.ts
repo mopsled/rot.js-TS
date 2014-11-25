@@ -46,6 +46,13 @@ declare module ROT {
         setOptions(options: any);
     }
 
+    export class Engine {
+        constructor(scheduler: ROT.Scheduler);
+        lock();
+        start();
+        unlock();
+    }
+
     export class Lighting {
         constructor(reflectivityCallback: (x: number, y: number) => void, options: any);
         compute(lightingCallback: (x: number, y: number, color: number) => void );
@@ -68,7 +75,7 @@ declare module ROT {
     }
 
     export class Scheduler {
-        add(item: any);
+        add(item: any, repeat: boolean);
         clear();
         next(): any;
         remove(item: any);
@@ -86,6 +93,14 @@ declare module ROT {
         static measure(str: string, maxWidth: number): number;
         static tokenize(str: string, maxWidth: number): Array<string>;
     }
+
+    export class DIRS {
+        [index: number]: number[];
+    }
+}
+
+declare module ROT.Scheduler {
+    export class Simple extends Scheduler { }
 }
 
 declare module ROT.FOV {
@@ -205,4 +220,8 @@ declare module ROT.Path {
         constructor(toX: number, toY: number, passableCallback: (x: number, y: number) => void , options: any);
         compute(fromX: number, fromY: number, callback: (x: number, y: number) => void );
     }
+} 
+
+interface Array<T> {
+    random(): T;
 }
