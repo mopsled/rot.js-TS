@@ -38,7 +38,7 @@ declare module ROT {
         computeFontSize(availWidth: number, availHeight: number);
         computeSize(availWidth: number, availHeight: number);
         DEBUG(x: number, y: number, what: number);
-        draw(x: number, y: number, ch: string, fg: string, bg: string);
+        draw(x: number, y: number, ch: string, fg?: string, bg?: string);
         drawText(x: number, y: number, text: string, maxWidth?: number): number;
         eventToPosition(e: Event): number[];
         getContainer(): HTMLElement;
